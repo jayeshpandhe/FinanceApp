@@ -1,5 +1,13 @@
 var Twitter = require('twitter');
 
+// Twitter API access parameters
+var client = new Twitter({
+	consumer_key		: '',
+	consumer_secret		: '',
+	access_token_key	: '',
+	access_token_secret	: ''
+});
+
 var Company = function (symbol, name, highStockRate) {
 	this.symbol = symbol;
 	this.name = name;
@@ -43,15 +51,15 @@ Company.prototype.addTweet = function(tweet) {
 	return this.tweets.push(tweet);
 }
 
+/**
+ * Fetches tweets using Tweeter search API
+ * @param callBack: Called when response is received
+ */
 Company.prototype.getTweets = function(callBack) {
-	var client = new Twitter({
-		consumer_key		: '',
-		consumer_secret		: '',
-		access_token_key	: '',
-		access_token_secret	: ''
-	});
 	var self = this;
 	var searchKeyWord = this.getName();
+	
+	// Fetch 10 popular tweets by company name as search keyword
 	var searchCriteria = {q: searchKeyWord, count : 10, result_type : 'popular'};
 	client.get('search/tweets', searchCriteria, function(error, tweets, response) {
 		console.log("Response for -------> " + searchCriteria.q + " error --> " + error);
@@ -62,7 +70,6 @@ Company.prototype.getTweets = function(callBack) {
 				}
 			}
 		}
-		console.log(self);
 		callBack();
 	});
 }

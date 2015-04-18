@@ -9,6 +9,8 @@ exports.getStockDetails = function(sector, res, callBack) {
 	var companiesList = new CompanyList();
 	
 	var sectorCompanies = SectorList.getSector(sector);
+	
+	// Construct query string of company ids
 	var str = "(";
 	for(var i = 0; i < sectorCompanies.length; i++) {
 		str += "\"" + sectorCompanies[i].getSymbol() + "\"";
@@ -46,10 +48,13 @@ exports.getStockDetails = function(sector, res, callBack) {
 				var parsed = JSON.parse(str);
 				var quotes = parsed.query.results.quote;
 				
+				// Parse and add companies to the list
 				for(var i = 0; i < quotes.length; i++) {
 					var company = new Company(quotes[i].symbol, quotes[i].Name, quotes[i].DaysHigh);
 					companiesList.addCompany(company);
 				}
+				
+				// Return list to the caller
 				callBack(companiesList);
 			} catch (ex) {
 				console.log(ex);

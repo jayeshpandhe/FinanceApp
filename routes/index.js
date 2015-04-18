@@ -2,9 +2,7 @@ var SectorList = require('../models/sector_list')
 var utility = require("./utility");
 var yahooFinance = require("./yahoo_finance");
 var nasdaqFinance = require("./nasdaq_finance");
-var twitter = require("./twitter");
 var async = require("async");
-
 var YAHOO = "yahoo";
 var NASDAQ = "nasdaq";
 
@@ -31,13 +29,14 @@ exports.index = function(req, res){
 	}
 	apiName = !apiName ? YAHOO : apiName.toLowerCase();
 	
+	// Check API
 	var api;
 	if(apiName === YAHOO) {
 		api = yahooFinance;
 	} else if(apiName === NASDAQ) {
 		api = nasdaqFinance;
 	} else {
-		utility.sendFailureJSON(res, apiName + " API not supported");
+		utility.sendFailureJSON(res, apiName + " API is not supported");
 		return;
 	}
 
@@ -49,14 +48,17 @@ exports.index = function(req, res){
 		var asyncTasks = [];
 		companiesList.getList().forEach(function(company) {
 
+			// Push all company objects to async module
 			asyncTasks.push(function(callback) {
 				var c = company[Object.keys(company)[0]];
-				c.getTweets(callback);
+				c.getTweets(callback);		// Fetch Tweets for the company
 			});
 		});
+		
+		// Execute requests parallely
 		async.parallel(asyncTasks, function(err, results) {
 			console.log("------ All Done ------");
-			utility.sendSuccessJSON(res, companiesList);
+			utility.sendSuccessJSON(res, companiesList);	// Display final list
 	    });
 	});
 };

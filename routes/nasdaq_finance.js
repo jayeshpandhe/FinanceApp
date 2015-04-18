@@ -27,8 +27,9 @@ exports.getStockDetails = function(reqSector, res, callBack) {
 			var lines = str.split('\n');
 
 			var find = '"';
-			var re = new RegExp(find, 'g');
+			var re = new RegExp(find, 'g');		// Remove unnecessary " from string
 
+			// Parse and add companies to the list
 			for (var line, i = 0, l = lines.length; i < l; i++) {
 	            var line = lines[i].split(",");
 	            var sector = line[5];
@@ -41,6 +42,8 @@ exports.getStockDetails = function(reqSector, res, callBack) {
 	            	companiesList.addCompany(company);
 	            } 
 			}
+			
+			// Return list to the caller
 			callBack(companiesList);
 		});
 	});

@@ -1,3 +1,7 @@
+/**
+ * Provides utility functions to return response to user
+ */
+
 var STATUS = "status";
 var MESSAGE = "message";
 var RESULT = "result";

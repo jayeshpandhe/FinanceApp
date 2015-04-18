@@ -1,6 +1,7 @@
 var SectorList = function () {
 }
 
+// Static sector list
 SectorList.sectorList = {};
 
 SectorList.getSectorList = function() {

@@ -12,6 +12,11 @@ CompanyList.prototype.addCompany = function(company) {
 	this.companyList.push(companyMap);
 }
 
+/**
+ * Company details are stored as "COMPANY_SYMBOL": {COMPANY}.
+ * This method returns associated company object (i.e. {COMPANY})
+ * @param symbol Symbol of company
+ */
 CompanyList.prototype.getCompanyBySymbol = function(symbol) {
 	a[Object.keys(a)[0]];
 }

@@ -33,6 +33,7 @@ app.get('/', routes.index);
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 	
+	// Fetch sector wise industry details from Nasdaq
 	require('node.io').scrape(function() {
 		console.log("Fetching details");
 
@@ -48,6 +49,8 @@ http.createServer(app).listen(app.get('port'), function(){
 	            if(!SectorList.hasSector(sector)) {
 	            	SectorList.addSector(sector);
 	            }
+	            
+	            // Add company details by sector to sector list
 	            SectorList.addCompanyToSector(sector, company);
 	        }
 	        console.log("Done");
