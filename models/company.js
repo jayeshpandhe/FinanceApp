@@ -45,10 +45,10 @@ Company.prototype.addTweet = function(tweet) {
 
 Company.prototype.getTweets = function(callBack) {
 	var client = new Twitter({
-		consumer_key		: '51a38jxTfwYoanBA3AkPL6Ya6',
-		consumer_secret		: 'fPY09aYvengQZyGZkOVs12QNJfmk59kg0pXcLe7uvoyZC0Ljja',
-		access_token_key	: '3150570950-HAFgU9c5iobJUbCLwOIIpMhD5TQfHnC7FsM4An3',
-		access_token_secret	: 'iVVfj1eli0vxKLYRkISuIL7sOjT9ptSQKdQ5vh3IRM4Vt'
+		consumer_key		: '',
+		consumer_secret		: '',
+		access_token_key	: '',
+		access_token_secret	: ''
 	});
 	var self = this;
 	var searchKeyWord = this.getName();

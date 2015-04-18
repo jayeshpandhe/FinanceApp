@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sector</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".sector a").click(function(e){
+		e.preventDefault();
+		var sector = $(this).attr('id');
+		alert(sector);
+        /*$.get("demo_test.asp", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });*/
+    });
+});
+</script>
+</head>
+
+<body>
+	<div class = "sector">
+		<a href="" id="Test">Test</a>
+	</div>
+</body>
+</html>
