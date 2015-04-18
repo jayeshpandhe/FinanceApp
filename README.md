@@ -1,6 +1,6 @@
 
 
-# Challenge
+# Yahoo finance app
 
 
 
